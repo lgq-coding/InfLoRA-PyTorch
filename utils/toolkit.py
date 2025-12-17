@@ -10,7 +10,11 @@ def count_parameters(model, trainable=False):
 
 
 def tensor2numpy(x):
-    return x.cpu().data.numpy() if x.is_cuda else x.data.numpy()
+    if isinstance(x, (int, float)):
+        return x
+    if hasattr(x, 'is_cuda') and x.is_cuda:
+        return x.detach().cpu().numpy()
+    return x.detach().numpy()
 
 
 def target2onehot(targets, n_classes):
@@ -105,5 +109,6 @@ def accuracy_binary(y_pred, y_true, nb_old, increment=2):
     all_acc['new'] = np.around(((y_pred[idxes]%2) == (y_true[idxes]%2)).sum()*100 / len(idxes), decimals=2)
 
     return all_acc
+
 
 
