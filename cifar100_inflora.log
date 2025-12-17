@@ -1,0 +1,454 @@
+logs/cifar100/10_10_sip/InfLoRA/adam/4/0.95_1.0-0.0005/0
+2025-12-14 06:40:55,219 [trainer.py] => config: configs/cifar100_inflora_debug.json
+2025-12-14 06:40:55,219 [trainer.py] => device: [device(type='cuda', index=0)]
+2025-12-14 06:40:55,219 [trainer.py] => prefix: reproduce_debug
+2025-12-14 06:40:55,219 [trainer.py] => dataset: cifar100
+2025-12-14 06:40:55,219 [trainer.py] => data_path: data/
+2025-12-14 06:40:55,219 [trainer.py] => memory_size: 0
+2025-12-14 06:40:55,219 [trainer.py] => memory_per_class: 0
+2025-12-14 06:40:55,219 [trainer.py] => fixed_memory: True
+2025-12-14 06:40:55,220 [trainer.py] => shuffle: False
+2025-12-14 06:40:55,220 [trainer.py] => init_cls: 10
+2025-12-14 06:40:55,220 [trainer.py] => increment: 10
+2025-12-14 06:40:55,220 [trainer.py] => total_sessions: 2
+2025-12-14 06:40:55,220 [trainer.py] => model_name: InfLoRA
+2025-12-14 06:40:55,220 [trainer.py] => net_type: sip
+2025-12-14 06:40:55,220 [trainer.py] => embd_dim: 768
+2025-12-14 06:40:55,220 [trainer.py] => num_heads: 12
+2025-12-14 06:40:55,220 [trainer.py] => seed: 0
+2025-12-14 06:40:55,220 [trainer.py] => EPSILON: 1e-08
+2025-12-14 06:40:55,220 [trainer.py] => init_epoch: 2
+2025-12-14 06:40:55,220 [trainer.py] => optim: adam
+2025-12-14 06:40:55,220 [trainer.py] => init_lr: 0.0005
+2025-12-14 06:40:55,221 [trainer.py] => init_lr_decay: 0.1
+2025-12-14 06:40:55,221 [trainer.py] => init_weight_decay: 0.0
+2025-12-14 06:40:55,221 [trainer.py] => epochs: 2
+2025-12-14 06:40:55,221 [trainer.py] => lrate: 0.0005
+2025-12-14 06:40:55,221 [trainer.py] => lrate_decay: 0.1
+2025-12-14 06:40:55,221 [trainer.py] => batch_size: 32
+2025-12-14 06:40:55,221 [trainer.py] => weight_decay: 0.0
+2025-12-14 06:40:55,221 [trainer.py] => rank: 4
+2025-12-14 06:40:55,221 [trainer.py] => lamb: 0.95
+2025-12-14 06:40:55,221 [trainer.py] => lame: 1.0
+2025-12-14 06:40:55,221 [trainer.py] => num_workers: 2
+2025-12-14 06:40:57,023 [data_manager.py] => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+2025-12-14 06:41:00,405 [trainer.py] => All params: 107680123
+2025-12-14 06:41:00,406 [trainer.py] => Trainable params: 107680123
+2025-12-14 06:41:00,408 [inflora.py] => Learning on 0-10
+After enforce: trainable param names count: 26, total trainable elements: 81,418
+Task 0, Epoch 2/2 => Loss 0.238, Train_accy 92.02: 100% 2/2 [04:46<00:00, 143.37s/it]
+2025-12-14 06:46:56,639 [inflora.py] => Task 0, Epoch 2/2 => Loss 0.238, Train_accy 92.02
+Threshold:  0.95
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 6/768 type remove
+Layer 2 : 9/768 type remove
+Layer 3 : 11/768 type remove
+Layer 4 : 11/768 type remove
+Layer 5 : 13/768 type remove
+Layer 6 : 15/768 type remove
+Layer 7 : 14/768 type remove
+Layer 8 : 19/768 type remove
+Layer 9 : 25/768 type remove
+Layer 10 : 21/768 type remove
+Layer 11 : 6/768 type remove
+Layer 12 : 19/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+2025-12-14 06:49:16,979 [trainer.py] => Time:496.57302594184875
+2025-12-14 06:49:30,822 [trainer.py] => Time:13.842060327529907
+2025-12-14 06:49:30,822 [inflora.py] => Exemplar size: 0
+2025-12-14 06:49:30,822 [trainer.py] => CNN: {'total': np.float64(98.8), '00-09': np.float64(98.8), 'old': 0, 'new': np.float64(98.8)}
+2025-12-14 06:49:30,822 [trainer.py] => CNN top1 curve: [np.float64(98.8)]
+2025-12-14 06:49:30,822 [trainer.py] => CNN top1 with task curve: [np.float64(98.8)]
+2025-12-14 06:49:30,822 [trainer.py] => CNN top1 task curve: [1.0]
+2025-12-14 06:49:33,599 [trainer.py] => All params: 107680123
+2025-12-14 06:49:33,600 [trainer.py] => Trainable params: 81418
+2025-12-14 06:49:33,601 [inflora.py] => Learning on 10-20
+After enforce: trainable param names count: 26, total trainable elements: 81,418
+Task 1, Epoch 2/2 => Loss 0.273, Train_accy 91.10: 100% 2/2 [04:45<00:00, 142.87s/it]
+2025-12-14 06:55:31,853 [inflora.py] => Task 1, Epoch 2/2 => Loss 0.273, Train_accy 91.10
+Threshold:  0.975
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 7/768 type remove
+Layer 2 : 12/768 type remove
+Layer 3 : 16/768 type remove
+Layer 4 : 18/768 type remove
+Layer 5 : 24/768 type remove
+Layer 6 : 29/768 type remove
+Layer 7 : 31/768 type remove
+Layer 8 : 43/768 type remove
+Layer 9 : 58/768 type remove
+Layer 10 : 63/768 type remove
+Layer 11 : 20/768 type remove
+Layer 12 : 78/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+2025-12-14 06:57:53,050 [trainer.py] => Time:499.44986391067505
+2025-12-14 06:58:20,362 [trainer.py] => Time:27.310279846191406
+2025-12-14 06:58:20,363 [inflora.py] => Exemplar size: 0
+2025-12-14 06:58:20,363 [trainer.py] => CNN: {'total': np.float64(96.0), '00-09': np.float64(97.6), '10-19': np.float64(94.4), 'old': np.float64(97.6), 'new': np.float64(94.4)}
+2025-12-14 06:58:20,363 [trainer.py] => CNN top1 curve: [np.float64(98.8), np.float64(96.0)]
+2025-12-14 06:58:20,363 [trainer.py] => CNN top1 with task curve: [np.float64(98.8), np.float64(98.25)]
+2025-12-14 06:58:20,363 [trainer.py] => CNN top1 task curve: [1.0, 0.972]
+2025-12-14 06:58:21,351 [trainer.py] => All params: 107680123
+2025-12-14 06:58:21,352 [trainer.py] => Trainable params: 81418
+2025-12-14 06:58:21,362 [inflora.py] => Learning on 20-30
+After enforce: trainable param names count: 26, total trainable elements: 81,418
+Task 2, Epoch 2/2 => Loss 0.251, Train_accy 91.72: 100% 2/2 [04:46<00:00, 143.49s/it]
+2025-12-14 07:04:21,160 [inflora.py] => Task 2, Epoch 2/2 => Loss 0.251, Train_accy 91.72
+Threshold:  1.0
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 0/768 type retain
+Layer 2 : 0/768 type retain
+Layer 3 : 0/768 type retain
+Layer 4 : 0/768 type retain
+Layer 5 : 0/768 type retain
+Layer 6 : 0/768 type retain
+Layer 7 : 0/768 type retain
+Layer 8 : 0/768 type retain
+Layer 9 : 0/768 type retain
+Layer 10 : 0/768 type retain
+Layer 11 : 0/768 type retain
+Layer 12 : 0/768 type retain
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+2025-12-14 07:06:45,640 [trainer.py] => Time:504.2881889343262
+2025-12-14 07:07:26,560 [trainer.py] => Time:40.91877794265747
+2025-12-14 07:07:26,560 [inflora.py] => Exemplar size: 0
+2025-12-14 07:07:26,560 [trainer.py] => CNN: {'total': np.float64(93.67), '00-09': np.float64(95.5), '10-19': np.float64(92.3), '20-29': np.float64(93.2), 'old': np.float64(93.9), 'new': np.float64(93.2)}
+2025-12-14 07:07:26,560 [trainer.py] => CNN top1 curve: [np.float64(98.8), np.float64(96.0), np.float64(93.67)]
+2025-12-14 07:07:26,560 [trainer.py] => CNN top1 with task curve: [np.float64(98.8), np.float64(98.25), np.float64(98.1)]
+2025-12-14 07:07:26,560 [trainer.py] => CNN top1 task curve: [1.0, 0.972, 0.9473333333333334]
+2025-12-14 07:07:27,526 [trainer.py] => All params: 107835269
+2025-12-14 07:07:27,527 [trainer.py] => Trainable params: 81418
+2025-12-14 07:07:27,536 [inflora.py] => Learning on 30-40
+After enforce: trainable param names count: 26, total trainable elements: 81,418
+Task 3, Epoch 2/2 => Loss 0.241, Train_accy 92.48: 100% 2/2 [04:47<00:00, 143.97s/it]
+2025-12-14 07:13:27,276 [inflora.py] => Task 3, Epoch 2/2 => Loss 0.241, Train_accy 92.48
+Threshold:  1.025
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 0/768 type retain
+Layer 2 : 0/768 type retain
+Layer 3 : 0/768 type retain
+Layer 4 : 0/768 type retain
+Layer 5 : 0/768 type retain
+Layer 6 : 0/768 type retain
+Layer 7 : 0/768 type retain
+Layer 8 : 0/768 type retain
+Layer 9 : 0/768 type retain
+Layer 10 : 0/768 type retain
+Layer 11 : 0/768 type retain
+Layer 12 : 0/768 type retain
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+2025-12-14 07:15:48,060 [trainer.py] => Time:500.53270864486694
+2025-12-14 07:16:42,884 [trainer.py] => Time:54.824039697647095
+2025-12-14 07:16:42,885 [inflora.py] => Exemplar size: 0
+2025-12-14 07:16:42,885 [trainer.py] => CNN: {'total': np.float64(90.18), '00-09': np.float64(95.1), '10-19': np.float64(89.9), '20-29': np.float64(92.1), '30-39': np.float64(83.6), 'old': np.float64(92.37), 'new': np.float64(83.6)}
+2025-12-14 07:16:42,885 [trainer.py] => CNN top1 curve: [np.float64(98.8), np.float64(96.0), np.float64(93.67), np.float64(90.18)]
+2025-12-14 07:16:42,886 [trainer.py] => CNN top1 with task curve: [np.float64(98.8), np.float64(98.25), np.float64(98.1), np.float64(97.9)]
+2025-12-14 07:16:42,886 [trainer.py] => CNN top1 task curve: [1.0, 0.972, 0.9473333333333334, 0.9115]
+2025-12-14 07:16:50,393 [trainer.py] => All params: 107990415
+2025-12-14 07:16:50,395 [trainer.py] => Trainable params: 81418
+2025-12-14 07:16:50,405 [inflora.py] => Learning on 40-50
+After enforce: trainable param names count: 26, total trainable elements: 81,418
+Task 4, Epoch 2/2 => Loss 0.257, Train_accy 91.54: 100% 2/2 [04:47<00:00, 143.67s/it]
+2025-12-14 07:22:49,891 [inflora.py] => Task 4, Epoch 2/2 => Loss 0.257, Train_accy 91.54
+Threshold:  1.05
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 0/768 type retain
+Layer 2 : 0/768 type retain
+Layer 3 : 0/768 type retain
+Layer 4 : 0/768 type retain
+Layer 5 : 0/768 type retain
+Layer 6 : 0/768 type retain
+Layer 7 : 0/768 type retain
+Layer 8 : 0/768 type retain
+Layer 9 : 0/768 type retain
+Layer 10 : 0/768 type retain
+Layer 11 : 0/768 type retain
+Layer 12 : 0/768 type retain
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+2025-12-14 07:25:10,724 [trainer.py] => Time:500.3288314342499
+2025-12-14 07:26:19,005 [trainer.py] => Time:68.28099250793457
+2025-12-14 07:26:19,006 [inflora.py] => Exemplar size: 0
+2025-12-14 07:26:19,006 [trainer.py] => CNN: {'total': np.float64(88.32), '00-09': np.float64(94.1), '10-19': np.float64(87.5), '20-29': np.float64(91.1), '30-39': np.float64(82.1), '40-49': np.float64(86.8), 'old': np.float64(88.7), 'new': np.float64(86.8)}
+2025-12-14 07:26:19,006 [trainer.py] => CNN top1 curve: [np.float64(98.8), np.float64(96.0), np.float64(93.67), np.float64(90.18), np.float64(88.32)]
+2025-12-14 07:26:19,006 [trainer.py] => CNN top1 with task curve: [np.float64(98.8), np.float64(98.25), np.float64(98.1), np.float64(97.9), np.float64(98.04)]
+2025-12-14 07:26:19,006 [trainer.py] => CNN top1 task curve: [1.0, 0.972, 0.9473333333333334, 0.9115, 0.8908]
+2025-12-14 07:26:23,763 [trainer.py] => All params: 108145561
+2025-12-14 07:26:23,764 [trainer.py] => Trainable params: 81418
+2025-12-14 07:26:23,775 [inflora.py] => Learning on 50-60
+After enforce: trainable param names count: 26, total trainable elements: 81,418
+Task 5, Epoch 2/2 => Loss 0.266, Train_accy 91.04: 100% 2/2 [04:47<00:00, 143.67s/it]
+2025-12-14 07:32:23,333 [inflora.py] => Task 5, Epoch 2/2 => Loss 0.266, Train_accy 91.04
+Threshold:  1.0750000000000002
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 0/768 type retain
+Layer 2 : 0/768 type retain
+Layer 3 : 0/768 type retain
+Layer 4 : 0/768 type retain
+Layer 5 : 0/768 type retain
+Layer 6 : 0/768 type retain
+Layer 7 : 0/768 type retain
+Layer 8 : 0/768 type retain
+Layer 9 : 0/768 type retain
+Layer 10 : 0/768 type retain
+Layer 11 : 0/768 type retain
+Layer 12 : 0/768 type retain
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+2025-12-14 07:34:44,030 [trainer.py] => Time:500.2657103538513
+2025-12-14 07:36:06,143 [trainer.py] => Time:82.11252546310425
+2025-12-14 07:36:06,143 [inflora.py] => Exemplar size: 0
+2025-12-14 07:36:06,144 [trainer.py] => CNN: {'total': np.float64(84.98), '00-09': np.float64(94.7), '10-19': np.float64(85.7), '20-29': np.float64(89.8), '30-39': np.float64(81.5), '40-49': np.float64(85.5), '50-59': np.float64(72.7), 'old': np.float64(87.44), 'new': np.float64(72.7)}
+2025-12-14 07:36:06,144 [trainer.py] => CNN top1 curve: [np.float64(98.8), np.float64(96.0), np.float64(93.67), np.float64(90.18), np.float64(88.32), np.float64(84.98)]
+2025-12-14 07:36:06,144 [trainer.py] => CNN top1 with task curve: [np.float64(98.8), np.float64(98.25), np.float64(98.1), np.float64(97.9), np.float64(98.04), np.float64(97.72)]
+2025-12-14 07:36:06,144 [trainer.py] => CNN top1 task curve: [1.0, 0.972, 0.9473333333333334, 0.9115, 0.8908, 0.8563333333333333]
+2025-12-14 07:36:07,443 [trainer.py] => All params: 108300707
+2025-12-14 07:36:07,444 [trainer.py] => Trainable params: 81418
+2025-12-14 07:36:07,455 [inflora.py] => Learning on 60-70
+After enforce: trainable param names count: 26, total trainable elements: 81,418
+Task 6, Epoch 2/2 => Loss 0.288, Train_accy 90.18: 100% 2/2 [04:47<00:00, 143.95s/it]
+2025-12-14 07:42:07,046 [inflora.py] => Task 6, Epoch 2/2 => Loss 0.288, Train_accy 90.18
+Threshold:  1.1
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 0/768 type retain
+Layer 2 : 0/768 type retain
+Layer 3 : 0/768 type retain
+Layer 4 : 0/768 type retain
+Layer 5 : 0/768 type retain
+Layer 6 : 0/768 type retain
+Layer 7 : 0/768 type retain
+Layer 8 : 0/768 type retain
+Layer 9 : 0/768 type retain
+Layer 10 : 0/768 type retain
+Layer 11 : 0/768 type retain
+Layer 12 : 0/768 type retain
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+2025-12-14 07:44:28,927 [trainer.py] => Time:501.48264145851135
+2025-12-14 07:46:04,892 [trainer.py] => Time:95.96387600898743
+2025-12-14 07:46:04,892 [inflora.py] => Exemplar size: 0
+2025-12-14 07:46:04,893 [trainer.py] => CNN: {'total': np.float64(83.14), '00-09': np.float64(95.3), '10-19': np.float64(84.1), '20-29': np.float64(87.7), '30-39': np.float64(80.0), '40-49': np.float64(85.7), '50-59': np.float64(69.8), '60-69': np.float64(79.4), 'old': np.float64(83.77), 'new': np.float64(79.4)}
+2025-12-14 07:46:04,893 [trainer.py] => CNN top1 curve: [np.float64(98.8), np.float64(96.0), np.float64(93.67), np.float64(90.18), np.float64(88.32), np.float64(84.98), np.float64(83.14)]
+2025-12-14 07:46:04,893 [trainer.py] => CNN top1 with task curve: [np.float64(98.8), np.float64(98.25), np.float64(98.1), np.float64(97.9), np.float64(98.04), np.float64(97.72), np.float64(97.6)]
+2025-12-14 07:46:04,893 [trainer.py] => CNN top1 task curve: [1.0, 0.972, 0.9473333333333334, 0.9115, 0.8908, 0.8563333333333333, 0.8378571428571429]
+2025-12-14 07:46:06,186 [trainer.py] => All params: 108455853
+2025-12-14 07:46:06,188 [trainer.py] => Trainable params: 81418
+2025-12-14 07:46:06,197 [inflora.py] => Learning on 70-80
+After enforce: trainable param names count: 26, total trainable elements: 81,418
+Task 7, Epoch 2/2 => Loss 0.252, Train_accy 92.12: 100% 2/2 [04:48<00:00, 144.37s/it]
+2025-12-14 07:52:07,345 [inflora.py] => Task 7, Epoch 2/2 => Loss 0.252, Train_accy 92.12
+Threshold:  1.125
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 0/768 type retain
+Layer 2 : 0/768 type retain
+Layer 3 : 0/768 type retain
+Layer 4 : 0/768 type retain
+Layer 5 : 0/768 type retain
+Layer 6 : 0/768 type retain
+Layer 7 : 0/768 type retain
+Layer 8 : 0/768 type retain
+Layer 9 : 0/768 type retain
+Layer 10 : 0/768 type retain
+Layer 11 : 0/768 type retain
+Layer 12 : 0/768 type retain
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+2025-12-14 07:54:29,416 [trainer.py] => Time:503.228303194046
+2025-12-14 07:56:19,513 [trainer.py] => Time:110.09479665756226
+2025-12-14 07:56:19,513 [inflora.py] => Exemplar size: 0
+2025-12-14 07:56:19,513 [trainer.py] => CNN: {'total': np.float64(82.28), '00-09': np.float64(93.9), '10-19': np.float64(84.9), '20-29': np.float64(87.0), '30-39': np.float64(79.7), '40-49': np.float64(85.4), '50-59': np.float64(68.3), '60-69': np.float64(77.9), '70-79': np.float64(81.1), 'old': np.float64(82.44), 'new': np.float64(81.1)}
+2025-12-14 07:56:19,513 [trainer.py] => CNN top1 curve: [np.float64(98.8), np.float64(96.0), np.float64(93.67), np.float64(90.18), np.float64(88.32), np.float64(84.98), np.float64(83.14), np.float64(82.28)]
+2025-12-14 07:56:19,513 [trainer.py] => CNN top1 with task curve: [np.float64(98.8), np.float64(98.25), np.float64(98.1), np.float64(97.9), np.float64(98.04), np.float64(97.72), np.float64(97.6), np.float64(97.65)]
+2025-12-14 07:56:19,513 [trainer.py] => CNN top1 task curve: [1.0, 0.972, 0.9473333333333334, 0.9115, 0.8908, 0.8563333333333333, 0.8378571428571429, 0.8285]
+2025-12-14 07:56:20,822 [trainer.py] => All params: 108610999
+2025-12-14 07:56:20,825 [trainer.py] => Trainable params: 81418
+2025-12-14 07:56:20,839 [inflora.py] => Learning on 80-90
+After enforce: trainable param names count: 26, total trainable elements: 81,418
+Task 8, Epoch 2/2 => Loss 0.222, Train_accy 92.58: 100% 2/2 [04:48<00:00, 144.05s/it]
+2025-12-14 08:02:21,313 [inflora.py] => Task 8, Epoch 2/2 => Loss 0.222, Train_accy 92.58
+Threshold:  1.1500000000000001
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 0/768 type retain
+Layer 2 : 0/768 type retain
+Layer 3 : 0/768 type retain
+Layer 4 : 0/768 type retain
+Layer 5 : 0/768 type retain
+Layer 6 : 0/768 type retain
+Layer 7 : 0/768 type retain
+Layer 8 : 0/768 type retain
+Layer 9 : 0/768 type retain
+Layer 10 : 0/768 type retain
+Layer 11 : 0/768 type retain
+Layer 12 : 0/768 type retain
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+2025-12-14 08:04:43,292 [trainer.py] => Time:502.466224193573
+2025-12-14 08:06:46,806 [trainer.py] => Time:123.51391625404358
+2025-12-14 08:06:46,806 [inflora.py] => Exemplar size: 0
+2025-12-14 08:06:46,806 [trainer.py] => CNN: {'total': np.float64(81.12), '00-09': np.float64(94.3), '10-19': np.float64(84.7), '20-29': np.float64(86.9), '30-39': np.float64(78.9), '40-49': np.float64(85.0), '50-59': np.float64(66.4), '60-69': np.float64(73.6), '70-79': np.float64(79.9), '80-89': np.float64(80.4), 'old': np.float64(81.21), 'new': np.float64(80.4)}
+2025-12-14 08:06:46,807 [trainer.py] => CNN top1 curve: [np.float64(98.8), np.float64(96.0), np.float64(93.67), np.float64(90.18), np.float64(88.32), np.float64(84.98), np.float64(83.14), np.float64(82.28), np.float64(81.12)]
+2025-12-14 08:06:46,807 [trainer.py] => CNN top1 with task curve: [np.float64(98.8), np.float64(98.25), np.float64(98.1), np.float64(97.9), np.float64(98.04), np.float64(97.72), np.float64(97.6), np.float64(97.65), np.float64(97.5)]
+2025-12-14 08:06:46,807 [trainer.py] => CNN top1 task curve: [1.0, 0.972, 0.9473333333333334, 0.9115, 0.8908, 0.8563333333333333, 0.8378571428571429, 0.8285, 0.8164444444444444]
+2025-12-14 08:06:48,088 [trainer.py] => All params: 108766145
+2025-12-14 08:06:48,090 [trainer.py] => Trainable params: 81418
+2025-12-14 08:06:48,099 [inflora.py] => Learning on 90-100
+After enforce: trainable param names count: 26, total trainable elements: 81,418
+Task 9, Epoch 2/2 => Loss 0.186, Train_accy 94.34: 100% 2/2 [04:48<00:00, 144.31s/it]
+2025-12-14 08:12:49,349 [inflora.py] => Task 9, Epoch 2/2 => Loss 0.186, Train_accy 94.34
+Threshold:  1.1750000000000003
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 0/768 type retain
+Layer 2 : 0/768 type retain
+Layer 3 : 0/768 type retain
+Layer 4 : 0/768 type retain
+Layer 5 : 0/768 type retain
+Layer 6 : 0/768 type retain
+Layer 7 : 0/768 type retain
+Layer 8 : 0/768 type retain
+Layer 9 : 0/768 type retain
+Layer 10 : 0/768 type retain
+Layer 11 : 0/768 type retain
+Layer 12 : 0/768 type retain
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+2025-12-14 08:15:11,509 [trainer.py] => Time:503.418927192688
+2025-12-14 08:17:29,269 [trainer.py] => Time:137.7590775489807
+2025-12-14 08:17:29,269 [inflora.py] => Exemplar size: 0
+2025-12-14 08:17:29,269 [trainer.py] => CNN: {'total': np.float64(79.47), '00-09': np.float64(93.7), '10-19': np.float64(81.9), '20-29': np.float64(86.3), '30-39': np.float64(76.6), '40-49': np.float64(84.2), '50-59': np.float64(65.0), '60-69': np.float64(72.8), '70-79': np.float64(78.2), '80-89': np.float64(78.4), '90-99': np.float64(77.6), 'old': np.float64(79.68), 'new': np.float64(77.6)}
+2025-12-14 08:17:29,270 [trainer.py] => CNN top1 curve: [np.float64(98.8), np.float64(96.0), np.float64(93.67), np.float64(90.18), np.float64(88.32), np.float64(84.98), np.float64(83.14), np.float64(82.28), np.float64(81.12), np.float64(79.47)]
+2025-12-14 08:17:29,270 [trainer.py] => CNN top1 with task curve: [np.float64(98.8), np.float64(98.25), np.float64(98.1), np.float64(97.9), np.float64(98.04), np.float64(97.72), np.float64(97.6), np.float64(97.65), np.float64(97.5), np.float64(97.7)]
+2025-12-14 08:17:29,270 [trainer.py] => CNN top1 task curve: [1.0, 0.972, 0.9473333333333334, 0.9115, 0.8908, 0.8563333333333333, 0.8378571428571429, 0.8285, 0.8164444444444444, 0.7995]
