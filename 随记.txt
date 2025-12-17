@@ -1,0 +1,1104 @@
+Task 0, Epoch 1/20 => Loss 0.667, Train_accy 79.28:   5% 1/20
+Task 0, Epoch 2/20 => Loss 0.211, Train_accy 93.32:  10% 2/20
+Task 0, Epoch 3/20 => Loss 0.202, Train_accy 93.68:  15% 3/20
+Task 0, Epoch 4/20 => Loss 0.166, Train_accy 94.50:  20% 4/20
+Task 0, Epoch 5/20 => Loss 0.154, Train_accy 94.58:  25% 5/20
+Task 0, Epoch 6/20 => Loss 0.148, Train_accy 95.26:  30% 6/20
+Task 0, Epoch 7/20 => Loss 0.137, Train_accy 95.24:  35% 7/20
+Task 0, Epoch 8/20 => Loss 0.133, Train_accy 95.78:  40% 8/20
+Task 0, Epoch 9/20 => Loss 0.148, Train_accy 95.18:  45% 9/20
+Task 0, Epoch 10/20 => Loss 0.130, Train_accy 95.50:  50% 10/20
+Task 0, Epoch 11/20 => Loss 0.111, Train_accy 96.32:  55% 11/20
+Task 0, Epoch 12/20 => Loss 0.113, Train_accy 96.30:  60% 12/20
+Task 0, Epoch 13/20 => Loss 0.112, Train_accy 95.96:  65% 13/20
+Task 0, Epoch 14/20 => Loss 0.109, Train_accy 96.32:  70% 14/20
+Task 0, Epoch 15/20 => Loss 0.119, Train_accy 96.16:  75% 15/20
+Task 0, Epoch 16/20 => Loss 0.112, Train_accy 96.50:  80% 16/20
+Task 0, Epoch 17/20 => Loss 0.099, Train_accy 96.76:  85% 17/20
+Task 0, Epoch 18/20 => Loss 0.114, Train_accy 96.54:  90% 18/20
+Task 0, Epoch 19/20 => Loss 0.086, Train_accy 97.20:  95% 19/20
+Task 0, Epoch 20/20 => Loss 0.093, Train_accy 96.66: 100% 20/20 [51:25<00:00, 154.27s/it]
+2025-12-04 08:10:27,075 [inflora.py] => Task 0, Epoch 20/20 => Loss 0.093, Train_accy 96.66
+Threshold:  0.95
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 6/768 type remove
+Layer 2 : 9/768 type remove
+Layer 3 : 11/768 type remove
+Layer 4 : 10/768 type remove
+Layer 5 : 12/768 type remove
+Layer 6 : 14/768 type remove
+Layer 7 : 13/768 type remove
+Layer 8 : 17/768 type remove
+Layer 9 : 19/768 type remove
+Layer 10 : 16/768 type remove
+Layer 11 : 6/768 type remove
+Layer 12 : 11/768 type remove
+----------------------------------------
+Traceback (most recent call last):
+  File "/content/InfLoRA/main.py", line 33, in <module>
+    main()
+  File "/content/InfLoRA/main.py", line 11, in main
+    train(args)
+  File "/content/InfLoRA/trainer.py", line 21, in train
+    _train(args)
+  File "/content/InfLoRA/trainer.py", line 62, in _train
+    model.incremental_train(data_manager)
+  File "/content/InfLoRA/methods/inflora.py", line 83, in incremental_train
+    self._train(self.train_loader, self.test_loader)
+  File "/content/InfLoRA/methods/inflora.py", line 205, in _train
+    Uf=torch.Tensor(np.dot(self.feature_list[p],self.feature_list[p].transpose()))
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: transpose() received an invalid combination of arguments - got (), but expected one of:
+ * (int dim0, int dim1)
+ * (name dim0, name dim1)
+
+
+
+
+Task 0, Epoch 1/2 => Loss 0.442, Train_accy 86.22:  50% 1/2 [02:24<02:24, 144.80s/it]
+Task 0, Epoch 2/2 => Loss 0.190, Train_accy 93.76: 100% 2/2 [04:59<00:00, 149.73s/it]
+2025-12-04 08:27:25,313 [inflora.py] => Task 0, Epoch 2/2 => Loss 0.190, Train_accy 93.76
+Threshold:  0.95
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 6/768 type remove
+Layer 2 : 9/768 type remove
+Layer 3 : 11/768 type remove
+Layer 4 : 10/768 type remove
+Layer 5 : 11/768 type remove
+Layer 6 : 13/768 type remove
+Layer 7 : 12/768 type remove
+Layer 8 : 16/768 type remove
+Layer 9 : 17/768 type remove
+Layer 10 : 14/768 type remove
+Layer 11 : 5/768 type remove
+Layer 12 : 9/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+25-12-04 08:29:58,615 [trainer.py] => Time:519.5376734733582
+1000 1000
+1000 1000
+2025-12-04 08:30:13,335 [trainer.py] => Time:14.71956467628479
+2025-12-04 08:30:13,335 [inflora.py] => Exemplar size: 0
+2025-12-04 08:30:13,335 [trainer.py] => CNN: {'total': np.float64(98.9), '00-09': np.float64(98.9), 'old': 0, 'new': np.float64(98.9)}
+2025-12-04 08:30:13,335 [trainer.py] => CNN top1 curve: [np.float64(98.9)]
+2025-12-04 08:30:13,335 [trainer.py] => CNN top1 with task curve: [np.float64(98.9)]
+2025-12-04 08:30:13,335 [trainer.py] => CNN top1 task curve: [1.0]
+2025-12-04 08:30:19,597 [trainer.py] => All params: 107680123
+2025-12-04 08:30:19,598 [trainer.py] => Trainable params: 81418
+2025-12-04 08:30:19,599 [inflora.py] => Learning on 10-20
+
+Task 1, Epoch 1/2 => Loss 0.515, Train_accy 83.58:  50% 1/2
+Task 1, Epoch 2/2 => Loss 0.232, Train_accy 92.38: 100% 2/2 [05:09<00:00, 154.93s/it]
+2025-12-04 08:36:48,782 [inflora.py] => Task 1, Epoch 2/2 => Loss 0.232, Train_accy 92.38
+import torch
+import torch.nn as nn
+from torch import optim
+from torch.nn import functional as F
+from torch.utils.data import DataLoader
+
+import logging
+import numpy as np
+from tqdm import tqdm
+from sklearn.cluster import KMeans
+
+from methods.base import BaseLearner
+from utils.toolkit import tensor2numpy, accuracy
+from models.sinet_inflora import SiNet
+from models.vit_inflora import Attention_LoRA
+from copy import deepcopy
+from utils.schedulers import CosineSchedule
+import ipdb
+import math
+
+
+class InfLoRA(BaseLearner):
+
+    def __init__(self, args):
+        super().__init__(args)
+
+        if args["net_type"] == "sip":
+            self._network = SiNet(args)
+        else:
+            raise ValueError('Unknown net: {}.'.format(args["net_type"]))
+
+        for module in self._network.modules():
+            if isinstance(module, Attention_LoRA):
+                module.init_param()
+
+        self.args = args
+        self.optim = args["optim"]
+        self.EPSILON = args["EPSILON"]
+        self.init_epoch = args["init_epoch"]
+        self.init_lr = args["init_lr"]
+        self.init_lr_decay = args["init_lr_decay"]
+        self.init_weight_decay = args["init_weight_decay"]
+        self.epochs = args["epochs"]
+        self.lrate = args["lrate"]
+        self.lrate_decay = args["lrate_decay"]
+        self.batch_size = args["batch_size"]
+        self.weight_decay = args["weight_decay"]
+        self.num_workers = args["num_workers"]
+        self.lamb = args["lamb"]
+        self.lame = args["lame"]
+        self.total_sessions = args["total_sessions"]
+        self.dataset = args["dataset"]
+
+        self.topk = 1  # origin is 5
+        self.class_num = self._network.class_num
+        self.debug = False
+
+        self.all_keys = []
+        self.feature_list = []
+        self.project_type = []
+
+    def after_task(self):
+        # self._old_network = self._network.copy().freeze()
+        self._known_classes = self._total_classes
+        logging.info('Exemplar size: {}'.format(self.exemplar_size))
+
+    def incremental_train(self, data_manager):
+
+        self._cur_task += 1
+        self._total_classes = self._known_classes + data_manager.get_task_size(self._cur_task)
+        self._network.update_fc(self._total_classes)
+
+        logging.info('Learning on {}-{}'.format(self._known_classes, self._total_classes))
+
+        train_dataset = data_manager.get_dataset(np.arange(self._known_classes, self._total_classes), source='train',
+                                                 mode='train')
+        self.train_loader = DataLoader(train_dataset, batch_size=self.batch_size, shuffle=True,
+                                       num_workers=self.num_workers)
+        test_dataset = data_manager.get_dataset(np.arange(0, self._total_classes), source='test', mode='test')
+        self.test_loader = DataLoader(test_dataset, batch_size=self.batch_size, shuffle=False,
+                                      num_workers=self.num_workers)
+
+        # if len(self._multiple_gpus) > 1:
+        #     self._network = nn.DataParallel(self._network, self._multiple_gpus)
+        self._train(self.train_loader, self.test_loader)
+        self.clustering(self.train_loader)
+        # if len(self._multiple_gpus) > 1:
+        #     self._network = self._network.module
+
+    def _train(self, train_loader, test_loader):
+        self._network.to(self._device)
+        # if self._old_network is not None:
+        #     self._old_network.to(self._device)
+
+        for name, param in self._network.named_parameters():
+            param.requires_grad_(False)
+            try:
+                if "classifier_pool" + "." + str(self._network.module.numtask - 1) in name:
+                    param.requires_grad_(True)
+                if "lora_B_k" + "." + str(self._network.module.numtask - 1) in name:
+                    param.requires_grad_(True)
+                if "lora_B_v" + "." + str(self._network.module.numtask - 1) in name:
+                    param.requires_grad_(True)
+            except:
+                if "classifier_pool" + "." + str(self._network.numtask - 1) in name:
+                    param.requires_grad_(True)
+                if "lora_B_k" + "." + str(self._network.numtask - 1) in name:
+                    param.requires_grad_(True)
+                if "lora_B_v" + "." + str(self._network.numtask - 1) in name:
+                    param.requires_grad_(True)
+
+        # Double check
+        enabled = set()
+        for name, param in self._network.named_parameters():
+            if param.requires_grad:
+                enabled.add(name)
+
+        with torch.no_grad():
+            for i, (_, inputs, targets) in enumerate(train_loader):
+                inputs, targets = inputs.to(self._device), targets.to(self._device)
+                self._network(inputs, get_cur_feat=True)
+                # if i > 3: break
+
+            if self._cur_task == 0:
+                for module in self._network.modules():
+                    if isinstance(module, Attention_LoRA):
+                        cur_matrix = module.cur_matrix
+                        U, S, V = torch.linalg.svd(cur_matrix)
+                        module.lora_A_k[self._cur_task].weight.data.copy_(U[:, :module.rank].T / math.sqrt(3))
+                        module.lora_A_v[self._cur_task].weight.data.copy_(U[:, :module.rank].T / math.sqrt(3))
+                        module.cur_matrix.zero_()
+                        module.n_cur_matrix = 0
+            else:
+                # kk = 0
+                # for module in self._network.modules():
+                #     if isinstance(module, Attention_LoRA):
+                #         cur_matrix = module.cur_matrix
+                #         cur_matrix = cur_matrix - torch.mm(self.feature_mat[kk],cur_matrix)
+                #         cU, cS, cV = torch.linalg.svd(cur_matrix, full_matrices=False)
+                #         module.lora_A_k[self._cur_task].weight.data.copy_(cU[:,:module.rank].T/math.sqrt(3))
+                #         module.lora_A_v[self._cur_task].weight.data.copy_(cU[:,:module.rank].T/math.sqrt(3))
+                #         module.cur_matrix.zero_()
+                #         module.n_cur_matrix = 0
+                #         kk += 1
+
+                kk = 0
+                for module in self._network.modules():
+                    if isinstance(module, Attention_LoRA):
+                        cur_matrix = module.cur_matrix
+                        if self.project_type[kk] == 'remove':
+                            cur_matrix = cur_matrix - torch.mm(self.feature_mat[kk], cur_matrix)
+                        else:
+                            assert self.project_type[kk] == 'retain'
+                            cur_matrix = torch.mm(self.feature_mat[kk], cur_matrix)
+                        cU, cS, cV = torch.linalg.svd(cur_matrix, full_matrices=False)
+                        module.lora_A_k[self._cur_task].weight.data.copy_(cU[:, :module.rank].T / math.sqrt(3))
+                        module.lora_A_v[self._cur_task].weight.data.copy_(cU[:, :module.rank].T / math.sqrt(3))
+                        module.cur_matrix.zero_()
+                        module.n_cur_matrix = 0
+                        kk += 1
+
+        print(f"Parameters to be updated: {enabled}")
+        if len(self._multiple_gpus) > 1:
+            self._network = nn.DataParallel(self._network, self._multiple_gpus)
+        if self._cur_task == 0:
+            if self.optim == 'sgd':
+                optimizer = optim.SGD(self._network.parameters(), momentum=0.9, lr=self.init_lr,
+                                      weight_decay=self.init_weight_decay)
+                scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer=optimizer, T_max=self.init_epoch)
+            elif self.optim == 'adam':
+                optimizer = optim.Adam(self._network.parameters(), lr=self.init_lr, weight_decay=self.init_weight_decay,
+                                       betas=(0.9, 0.999))
+                scheduler = CosineSchedule(optimizer=optimizer, K=self.init_epoch)
+            else:
+                raise Exception
+            self.run_epoch = self.init_epoch
+            self.train_function(train_loader, test_loader, optimizer, scheduler)
+        else:
+            if self.optim == 'sgd':
+                optimizer = optim.SGD(self._network.parameters(), momentum=0.9, lr=self.lrate,
+                                      weight_decay=self.weight_decay)
+                scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer=optimizer, T_max=self.epochs)
+            elif self.optim == 'adam':
+                optimizer = optim.Adam(self._network.parameters(), lr=self.lrate, weight_decay=self.weight_decay,
+                                       betas=(0.9, 0.999))
+                scheduler = CosineSchedule(optimizer=optimizer, K=self.epochs)
+            else:
+                raise Exception
+            self.run_epoch = self.epochs
+            self.train_function(train_loader, test_loader, optimizer, scheduler)
+        if len(self._multiple_gpus) > 1:
+            self._network = self._network.module
+
+        with torch.no_grad():
+            for i, (_, inputs, targets) in enumerate(train_loader):
+                inputs, targets = inputs.to(self._device), targets.to(self._device)
+                self._network(inputs, get_cur_feat=True)
+
+            mat_list = []
+            for module in self._network.modules():
+                if isinstance(module, Attention_LoRA):
+                    mat_list.append(deepcopy(module.cur_matrix))
+                    module.cur_matrix.zero_()
+                    module.n_cur_matrix = 0
+            # self.update_GPM(mat_list)
+            self.update_DualGPM(mat_list)
+
+            # Projection Matrix Precomputation
+            self.feature_mat = []
+            for p in range(len(self.feature_list)):
+                Uf = torch.Tensor(np.dot(self.feature_list[p], self.feature_list[p].transpose()))
+                print('Layer {} - Projection Matrix shape: {}'.format(p + 1, Uf.shape))
+                self.feature_mat.append(Uf)
+
+        return
+
+    def train_function(self, train_loader, test_loader, optimizer, scheduler):
+        prog_bar = tqdm(range(self.run_epoch))
+        for _, epoch in enumerate(prog_bar):
+            self._network.eval()
+            losses = 0.
+            correct, total = 0, 0
+            for i, (_, inputs, targets) in enumerate(train_loader):
+
+                inputs, targets = inputs.to(self._device), targets.to(self._device)
+                mask = (targets >= self._known_classes).nonzero().view(-1)
+                inputs = torch.index_select(inputs, 0, mask)
+                targets = torch.index_select(targets, 0, mask) - self._known_classes
+
+                logits = self._network(inputs)['logits']
+                loss = F.cross_entropy(logits, targets)
+
+                optimizer.zero_grad()
+                loss.backward()
+
+                optimizer.step()
+                losses += loss.item()
+
+                _, preds = torch.max(logits, dim=1)
+                correct += preds.eq(targets.expand_as(preds)).cpu().sum()
+                total += len(targets)
+                if self.debug and i > 10: break
+
+            scheduler.step()
+            train_acc = np.around(tensor2numpy(correct) * 100 / total, decimals=2)
+
+            info = 'Task {}, Epoch {}/{} => Loss {:.3f}, Train_accy {:.2f}'.format(
+                self._cur_task, epoch + 1, self.run_epoch, losses / len(train_loader), train_acc)
+            prog_bar.set_description(info)
+
+        logging.info(info)
+
+    def clustering(self, dataloader):
+        features = []
+        for i, (_, inputs, targets) in enumerate(dataloader):
+            inputs, targets = inputs.to(self._device), targets.to(self._device)
+            mask = (targets >= self._known_classes).nonzero().view(-1)
+            inputs = torch.index_select(inputs, 0, mask)
+            with torch.no_grad():
+                if isinstance(self._network, nn.DataParallel):
+                    feature = self._network.module.extract_vector(inputs)
+                else:
+                    feature = self._network.extract_vector(inputs)
+            feature = feature / feature.norm(dim=-1, keepdim=True)
+            features.append(feature)
+        features = torch.cat(features, 0).cpu().detach().numpy()
+        clustering = KMeans(n_clusters=5, random_state=0).fit(features)
+        self.all_keys.append(torch.tensor(clustering.cluster_centers_).to(feature.device))
+
+    def _evaluate(self, y_pred, y_true):
+        ret = {}
+        print(len(y_pred), len(y_true))
+        grouped = accuracy(y_pred, y_true, self._known_classes, self.class_num)
+        ret['grouped'] = grouped
+        ret['top1'] = grouped['total']
+        return ret
+
+    def _eval_cnn(self, loader):
+        self._network.eval()
+        y_pred, y_true = [], []
+        y_pred_with_task = []
+        y_pred_task, y_true_task = [], []
+        for _, (_, inputs, targets) in enumerate(loader):
+            inputs = inputs.to(self._device)
+            targets = targets.to(self._device)
+
+            with torch.no_grad():
+                y_true_task.append((targets // self.class_num).cpu())
+
+                if isinstance(self._network, nn.DataParallel):
+                    outputs = self._network.module.interface(inputs)
+                else:
+                    outputs = self._network.interface(inputs)
+
+            predicts = torch.topk(outputs, k=self.topk, dim=1, largest=True, sorted=True)[1].view(-1)  # [bs, topk]
+            y_pred_task.append((predicts // self.class_num).cpu())
+
+            outputs_with_task = torch.zeros_like(outputs)[:, :self.class_num]
+            for idx, i in enumerate(targets // self.class_num):
+                en, be = self.class_num * i, self.class_num * (i + 1)
+                outputs_with_task[idx] = outputs[idx, en:be]
+            predicts_with_task = outputs_with_task.argmax(dim=1)
+            predicts_with_task = predicts_with_task + (targets // self.class_num) * self.class_num
+
+            # print(predicts.shape)
+            y_pred.append(predicts.cpu().numpy())
+            y_pred_with_task.append(predicts_with_task.cpu().numpy())
+            y_true.append(targets.cpu().numpy())
+
+        return np.concatenate(y_pred), np.concatenate(y_pred_with_task), np.concatenate(y_true), torch.cat(
+            y_pred_task), torch.cat(y_true_task)  # [N, topk]
+
+    def _compute_accuracy_domain(self, model, loader):
+        model.eval()
+        correct, total = 0, 0
+        for i, (_, inputs, targets) in enumerate(loader):
+            inputs = inputs.to(self._device)
+            with torch.no_grad():
+                outputs = model(inputs)['logits']
+
+            predicts = torch.max(outputs, dim=1)[1]
+            correct += ((predicts % self.class_num).cpu() == (targets % self.class_num)).sum()
+            total += len(targets)
+
+        return np.around(tensor2numpy(correct) * 100 / total, decimals=2)
+
+    def update_DualGPM(self, mat_list):
+        threshold = (self.lame - self.lamb) * self._cur_task / self.total_sessions + self.lamb
+        print('Threshold: ', threshold)
+        if len(self.feature_list) == 0:
+            # After First Task
+            for i in range(len(mat_list)):
+                activation = mat_list[i]
+                U, S, Vh = np.linalg.svd(activation, full_matrices=False)
+                # criteria (Eq-5)
+                sval_total = (S ** 2).sum()
+                sval_ratio = (S ** 2) / sval_total
+                r = np.sum(np.cumsum(sval_ratio) < threshold)  # +1
+                if r < (activation.shape[0] / 2):
+                    self.feature_list.append(U[:, 0:max(r, 1)])
+                    self.project_type.append('remove')
+                else:
+                    self.feature_list.append(U[:, 0:max(r, 1)])
+                    self.project_type.append('retain')
+        else:
+            for i in range(len(mat_list)):
+                if self.project_type[i] == 'remove':
+                    activation = mat_list[i]
+                    U1, S1, Vh1 = np.linalg.svd(activation, full_matrices=False)
+                    sval_total = (S1 ** 2).sum()
+                    # Projected Representation (Eq-8)
+                    act_hat = activation - np.dot(np.dot(self.feature_list[i], self.feature_list[i].transpose()),
+                                                  activation)
+                    U, S, Vh = np.linalg.svd(act_hat, full_matrices=False)
+                    # criteria (Eq-9)
+                    sval_hat = (S ** 2).sum()
+                    sval_ratio = (S ** 2) / sval_total
+                    accumulated_sval = (sval_total - sval_hat) / sval_total
+
+                    r = 0
+                    for ii in range(sval_ratio.shape[0]):
+                        if accumulated_sval < threshold:
+                            accumulated_sval += sval_ratio[ii]
+                            r += 1
+                        else:
+                            break
+                    if r == 0:
+                        print('Skip Updating DualGPM for layer: {}'.format(i + 1))
+                        continue
+                    # update GPM
+                    Ui = np.hstack((self.feature_list[i], U[:, 0:r]))
+                    if Ui.shape[1] > Ui.shape[0]:
+                        self.feature_list[i] = Ui[:, 0:Ui.shape[0]]
+                    else:
+                        self.feature_list[i] = Ui
+                else:
+                    assert self.project_type[i] == 'retain'
+                    activation = mat_list[i]
+                    U1, S1, Vh1 = np.linalg.svd(activation, full_matrices=False)
+                    sval_total = (S1 ** 2).sum()
+                    # Projected Representation (Eq-8)
+                    act_hat = np.dot(np.dot(self.feature_list[i], self.feature_list[i].transpose()), activation)
+                    U, S, Vh = np.linalg.svd(act_hat, full_matrices=False)
+                    # criteria (Eq-9)
+                    sval_hat = (S ** 2).sum()
+                    sval_ratio = (S ** 2) / sval_total
+                    accumulated_sval = sval_hat / sval_total
+
+                    r = 0
+                    for ii in range(sval_ratio.shape[0]):
+                        if accumulated_sval >= (1 - threshold):
+                            accumulated_sval -= sval_ratio[ii]
+                            r += 1
+                        else:
+                            break
+                    if r == 0:
+                        print('Skip Updating DualGPM for layer: {}'.format(i + 1))
+                        continue
+
+                    # update GPM by Projected Representation (Eq-8)
+                    act_feature = self.feature_list[i] - np.dot(np.dot(U[:, 0:r], U[:, 0:r].transpose()),
+                                                                self.feature_list[i])
+                    Ui, Si, Vi = np.linalg.svd(act_feature)
+                    self.feature_list[i] = Ui[:, :self.feature_list[i].shape[1] - r]
+
+        print('-' * 40)
+        print('Gradient Constraints Summary')
+        print('-' * 40)
+        for i in range(len(self.feature_list)):
+            if self.project_type[i] == 'remove' and (
+                    self.feature_list[i].shape[1] > (self.feature_list[i].shape[0] / 2)):
+                feature = self.feature_list[i]
+                # ipdb.set_trace()
+                U, S, V = np.linalg.svd(feature)
+                new_feature = U[:, feature.shape[1]:]
+                self.feature_list[i] = new_feature
+                self.project_type[i] = 'retain'
+            elif self.project_type[i] == 'retain':
+                assert self.feature_list[i].shape[1] <= (self.feature_list[i].shape[0] / 2)
+            print('Layer {} : {}/{} type {}'.format(i + 1, self.feature_list[i].shape[1], self.feature_list[i].shape[0],
+                                                    self.project_type[i]))
+        print('-' * 40)
+
+    def update_GPM(self, mat_list):
+        threshold = (self.lame - self.lamb) * self._cur_task / self.total_sessions + self.lamb
+        print('Threshold: ', threshold)
+        if len(self.feature_list) == 0:
+            # After First Task
+            for i in range(len(mat_list)):
+                activation = mat_list[i]
+                U, S, Vh = np.linalg.svd(activation, full_matrices=False)
+                # criteria (Eq-5)
+                sval_total = (S ** 2).sum()
+                sval_ratio = (S ** 2) / sval_total
+                r = np.sum(np.cumsum(sval_ratio) < threshold)  # +1
+                self.feature_list.append(U[:, 0:max(r, 1)])
+        else:
+            for i in range(len(mat_list)):
+                activation = mat_list[i]
+                U1, S1, Vh1 = np.linalg.svd(activation, full_matrices=False)
+                sval_total = (S1 ** 2).sum()
+                # Projected Representation (Eq-8)
+                act_hat = activation - np.dot(np.dot(self.feature_list[i], self.feature_list[i].transpose()),
+                                              activation)
+                U, S, Vh = np.linalg.svd(act_hat, full_matrices=False)
+                # criteria (Eq-9)
+                sval_hat = (S ** 2).sum()
+                sval_ratio = (S ** 2) / sval_total
+                accumulated_sval = (sval_total - sval_hat) / sval_total
+
+                r = 0
+                for ii in range(sval_ratio.shape[0]):
+                    if accumulated_sval < threshold:
+                        accumulated_sval += sval_ratio[ii]
+                        r += 1
+                    else:
+                        break
+                if r == 0:
+                    print('Skip Updating GPM for layer: {}'.format(i + 1))
+                    continue
+                # update GPM
+                Ui = np.hstack((self.feature_list[i], U[:, 0:r]))
+                if Ui.shape[1] > Ui.shape[0]:
+                    self.feature_list[i] = Ui[:, 0:Ui.shape[0]]
+                else:
+                    self.feature_list[i] = Ui
+
+        print('-' * 40)
+        print('Gradient Constraints Summary')
+        print('-' * 40)
+        for i in range(len(self.feature_list)):
+            logging.info('Layer {} : {}/{}'.format(i + 1, self.feature_list[i].shape[1], self.feature_list[i].shape[0]))
+        print('-' * 40)
+
+Task 0, Epoch 1/2 => Loss 0.442, Train_accy 86.22:  50% 1/2 [02:35<02:35, 155.05s/it]
+Task 0, Epoch 2/2 => Loss 0.190, Train_accy 93.76: 100% 2/2 [05:09<00:00, 154.73s/it]
+2025-12-04 09:10:56,290 [inflora.py] => Task 0, Epoch 2/2 => Loss 0.190, Train_accy 93.76
+Threshold:  0.95
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 6/768 type remove
+Layer 2 : 9/768 type remove
+Layer 3 : 11/768 type remove
+Layer 4 : 10/768 type remove
+Layer 5 : 11/768 type remove
+Layer 6 : 13/768 type remove
+Layer 7 : 12/768 type remove
+Layer 8 : 16/768 type remove
+Layer 9 : 17/768 type remove
+Layer 10 : 14/768 type remove
+Layer 11 : 5/768 type remove
+Layer 12 : 9/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+
+
+
+
+
+Task 0, Epoch 1/2 => Loss 0.442, Train_accy 86.22:  50% 1/2
+Task 0, Epoch 2/2 => Loss 0.190, Train_accy 93.76: 100% 2/2 [05:09<00:00, 154.59s/it]
+2025-12-04 09:33:12,885 [inflora.py] => Task 0, Epoch 2/2 => Loss 0.190, Train_accy 93.76
+Threshold:  0.95
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 6/768 type remove
+Layer 2 : 9/768 type remove
+Layer 3 : 11/768 type remove
+Layer 4 : 10/768 type remove
+Layer 5 : 11/768 type remove
+Layer 6 : 13/768 type remove
+Layer 7 : 12/768 type remove
+Layer 8 : 16/768 type remove
+Layer 9 : 17/768 type remove
+Layer 10 : 14/768 type remove
+Layer 11 : 5/768 type remove
+Layer 12 : 9/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+
+Task 1, Epoch 1/2 => Loss 0.516, Train_accy 83.54:  50% 1/2 [02:34<02:34, 154.87s/it]
+Task 1, Epoch 2/2 => Loss 0.235, Train_accy 92.28: 100% 2/2 [05:10<00:00, 155.05s/it]
+2025-12-04 09:42:28,903 [inflora.py] => Task 1, Epoch 2/2 => Loss 0.235, Train_accy 92.28
+Threshold:  0.975
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 7/768 type remove
+Layer 2 : 12/768 type remove
+Layer 3 : 16/768 type remove
+Layer 4 : 17/768 type remove
+Layer 5 : 24/768 type remove
+Layer 6 : 31/768 type remove
+Layer 7 : 32/768 type remove
+Layer 8 : 45/768 type remove
+Layer 9 : 56/768 type remove
+Layer 10 : 56/768 type remove
+Layer 11 : 20/768 type remove
+Layer 12 : 32/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+
+
+
+
+
+
+
+
+
+Task 0, Epoch 1/2 => Loss 0.447, Train_accy 86.24:  50% 1/2
+
+Task 0, Epoch 2/2 => Loss 0.189, Train_accy 93.94: 100% 2/2 [04:40<00:00, 140.13s/it]
+2025-12-04 12:42:12,430 [inflora.py] => Task 0, Epoch 2/2 => Loss 0.189, Train_accy 93.94
+Threshold:  0.95
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 6/768 type remove
+Layer 2 : 9/768 type remove
+Layer 3 : 11/768 type remove
+Layer 4 : 10/768 type remove
+Layer 5 : 12/768 type remove
+Layer 6 : 12/768 type remove
+Layer 7 : 11/768 type remove
+Layer 8 : 14/768 type remove
+Layer 9 : 14/768 type remove
+Layer 10 : 12/768 type remove
+Layer 11 : 5/768 type remove
+Layer 12 : 9/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+
+
+
+
+
+
+
+
+Task 1, Epoch 1/2 => Loss 0.509, Train_accy 84.02:  50% 1/2 
+Task 1, Epoch 2/2 => Loss 0.234, Train_accy 92.44: 100% 2/2 [04:40<00:00, 140.17s/it]
+2025-12-04 12:50:38,135 [inflora.py] => Task 1, Epoch 2/2 => Loss 0.234, Train_accy 92.44
+Threshold:  0.975
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 7/768 type remove
+Layer 2 : 11/768 type remove
+Layer 3 : 16/768 type remove
+Layer 4 : 18/768 type remove
+Layer 5 : 24/768 type remove
+Layer 6 : 28/768 type remove
+Layer 7 : 29/768 type remove
+Layer 8 : 41/768 type remove
+Layer 9 : 53/768 type remove
+Layer 10 : 55/768 type remove
+Layer 11 : 23/768 type remove
+Layer 12 : 40/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+
+Task 0, Epoch 1/2 => Loss 0.447, Train_accy 86.24:  50% 1/2
+Task 0, Epoch 2/2 => Loss 0.189, Train_accy 93.94: 100% 2/2 [04:40<00:00, 140.26s/it]
+2025-12-04 13:06:07,002 [inflora.py] => Task 0, Epoch 2/2 => Loss 0.189, Train_accy 93.94
+Threshold:  0.95
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 6/768 type remove
+Layer 2 : 9/768 type remove
+Layer 3 : 11/768 type remove
+Layer 4 : 10/768 type remove
+Layer 5 : 12/768 type remove
+Layer 6 : 12/768 type remove
+Layer 7 : 11/768 type remove
+Layer 8 : 14/768 type remove
+Layer 9 : 14/768 type remove
+Layer 10 : 12/768 type remove
+Layer 11 : 5/768 type remove
+Layer 12 : 9/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+
+
+Task 1, Epoch 1/2 => Loss 0.509, Train_accy 84.02:  50% 1/2
+Task 1, Epoch 2/2 => Loss 0.234, Train_accy 92.44: 100% 2/2 [04:40<00:00, 140.17s/it]
+2025-12-04 13:14:35,808 [inflora.py] => Task 1, Epoch 2/2 => Loss 0.234, Train_accy 92.44
+Threshold:  0.975
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 7/768 type remove
+Layer 2 : 11/768 type remove
+Layer 3 : 16/768 type remove
+Layer 4 : 18/768 type remove
+Layer 5 : 24/768 type remove
+Layer 6 : 28/768 type remove
+Layer 7 : 29/768 type remove
+Layer 8 : 41/768 type remove
+Layer 9 : 53/768 type remove
+Layer 10 : 55/768 type remove
+Layer 11 : 23/768 type remove
+Layer 12 : 40/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+
+
+
+
+
+
+
+
+Task 0, Epoch 1/2 => Loss 0.447, Train_accy 86.24:  50% 1/2
+Task 0, Epoch 2/2 => Loss 0.189, Train_accy 93.94: 100% 2/2 [04:40<00:00, 140.12s/it]
+2025-12-04 13:25:18,107 [inflora.py] => Task 0, Epoch 2/2 => Loss 0.189, Train_accy 93.94
+Threshold:  0.95
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 6/768 type remove
+Layer 2 : 9/768 type remove
+Layer 3 : 11/768 type remove
+Layer 4 : 10/768 type remove
+Layer 5 : 12/768 type remove
+Layer 6 : 12/768 type remove
+Layer 7 : 11/768 type remove
+Layer 8 : 14/768 type remove
+Layer 9 : 14/768 type remove
+Layer 10 : 12/768 type remove
+Layer 11 : 5/768 type remove
+Layer 12 : 9/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+
+Task 1, Epoch 1/2 => Loss 0.509, Train_accy 84.02:  50% 1/2
+Task 1, Epoch 2/2 => Loss 0.234, Train_accy 92.44: 100% 2/2 [04:40<00:00, 140.36s/it]
+2025-12-04 13:33:43,379 [inflora.py] => Task 1, Epoch 2/2 => Loss 0.234, Train_accy 92.44
+Threshold:  0.975
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 7/768 type remove
+Layer 2 : 11/768 type remove
+Layer 3 : 16/768 type remove
+Layer 4 : 18/768 type remove
+Layer 5 : 24/768 type remove
+Layer 6 : 28/768 type remove
+Layer 7 : 29/768 type remove
+Layer 8 : 41/768 type remove
+Layer 9 : 53/768 type remove
+Layer 10 : 55/768 type remove
+Layer 11 : 23/768 type remove
+Layer 12 : 40/768 type remove
+----------------------------------------
+Layer 1 - Projection Matrix shape: torch.Size([768, 768])
+Layer 2 - Projection Matrix shape: torch.Size([768, 768])
+Layer 3 - Projection Matrix shape: torch.Size([768, 768])
+Layer 4 - Projection Matrix shape: torch.Size([768, 768])
+Layer 5 - Projection Matrix shape: torch.Size([768, 768])
+Layer 6 - Projection Matrix shape: torch.Size([768, 768])
+Layer 7 - Projection Matrix shape: torch.Size([768, 768])
+Layer 8 - Projection Matrix shape: torch.Size([768, 768])
+Layer 9 - Projection Matrix shape: torch.Size([768, 768])
+Layer 10 - Projection Matrix shape: torch.Size([768, 768])
+Layer 11 - Projection Matrix shape: torch.Size([768, 768])
+Layer 12 - Projection Matrix shape: torch.Size([768, 768])
+
+
+
+
+
+
+
+
+
+12.6
+Task 0, Epoch 1/2 => Loss 0.442, Train_accy 86.06:  50% 1/2
+Task 0, Epoch 2/2 => Loss 0.184, Train_accy 94.18: 100% 2/2 [05:04<00:00, 152.48s/it]
+2025-12-06 01:55:02,358 [inflora.py] => Task 0, Epoch 2/2 => Loss 0.184, Train_accy 94.18
+Threshold:  0.95
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 6/768 type remove
+Layer 2 : 9/768 type remove
+Layer 3 : 10/768 type remove
+Layer 4 : 10/768 type remove
+Layer 5 : 11/768 type remove
+Layer 6 : 12/768 type remove
+Layer 7 : 11/768 type remove
+Layer 8 : 15/768 type remove
+Layer 9 : 14/768 type remove
+Layer 10 : 12/768 type remove
+Layer 11 : 5/768 type remove
+Layer 12 : 8/768 type remove
+Task 1, Epoch 1/2 => Loss 0.516, Train_accy 83.66:  50% 1/2
+Task 1, Epoch 2/2 => Loss 0.233, Train_accy 92.36: 100% 2/2 [05:06<00:00, 153.27s/it]
+2025-12-06 02:04:15,631 [inflora.py] => Task 1, Epoch 2/2 => Loss 0.233, Train_accy 92.36
+Threshold:  0.975
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 7/768 type remove
+Layer 2 : 11/768 type remove
+Layer 3 : 15/768 type remove
+Layer 4 : 18/768 type remove
+Layer 5 : 24/768 type remove
+Layer 6 : 28/768 type remove
+Layer 7 : 30/768 type remove
+Layer 8 : 44/768 type remove
+Layer 9 : 55/768 type remove
+Layer 10 : 58/768 type remove
+Layer 11 : 22/768 type remove
+Layer 12 : 33/768 type remove
+
+
+
+Task 0, Epoch 1/2 => Loss 0.442, Train_accy 86.06:  50% 1/2
+Task 0, Epoch 2/2 => Loss 0.184, Train_accy 94.18: 100% 2/2 [05:04<00:00, 152.18s/it]
+2025-12-06 02:37:03,888 [inflora.py] => Task 0, Epoch 2/2 => Loss 0.184, Train_accy 94.18
+Threshold:  0.95
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 6/768 type remove
+Layer 2 : 9/768 type remove
+Layer 3 : 10/768 type remove
+Layer 4 : 10/768 type remove
+Layer 5 : 11/768 type remove
+Layer 6 : 12/768 type remove
+Layer 7 : 11/768 type remove
+Layer 8 : 15/768 type remove
+Layer 9 : 14/768 type remove
+Layer 10 : 12/768 type remove
+Layer 11 : 5/768 type remove
+Layer 12 : 8/768 type remove
+Task 1, Epoch 1/2 => Loss 0.516, Train_accy 83.66:  50% 1/2
+Task 1, Epoch 2/2 => Loss 0.233, Train_accy 92.36: 100% 2/2 [05:06<00:00, 153.31s/it]
+2025-12-06 02:46:16,644 [inflora.py] => Task 1, Epoch 2/2 => Loss 0.233, Train_accy 92.36
+Threshold:  0.975
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 7/768 type remove
+Layer 2 : 11/768 type remove
+Layer 3 : 15/768 type remove
+Layer 4 : 18/768 type remove
+Layer 5 : 24/768 type remove
+Layer 6 : 28/768 type remove
+Layer 7 : 30/768 type remove
+Layer 8 : 44/768 type remove
+Layer 9 : 55/768 type remove
+Layer 10 : 58/768 type remove
+Layer 11 : 22/768 type remove
+Layer 12 : 33/768 type remove
+
+Task 2, Epoch 1/2 => Loss 2.017, Train_accy 29.60:  50% 1/2
+Task 2, Epoch 2/2 => Loss 1.776, Train_accy 38.36: 100% 2/2 [05:04<00:00, 152.42s/it]
+2025-12-06 02:55:45,100 [inflora.py] => Task 2, Epoch 2/2 => Loss 1.776, Train_accy 38.36
+
+Threshold:  1.0
+----------------------------------------
+Gradient Constraints Summary
+----------------------------------------
+Layer 1 : 0/768 type retain
+Layer 2 : 0/768 type retain
+Layer 3 : 0/768 type retain
+Layer 4 : 0/768 type retain
+Layer 5 : 0/768 type retain
+Layer 6 : 0/768 type retain
+Layer 7 : 0/768 type retain
+Layer 8 : 0/768 type retain
+Layer 9 : 0/768 type retain
+Layer 10 : 0/768 type retain
+Layer 11 : 0/768 type retain
+Layer 12 : 0/768 type retain
+
+Task 3, Epoch 1/2 => Loss 1.983, Train_accy 30.60:  50% 1/2
+Task 3, Epoch 2/2 => Loss 1.719, Train_accy 40.10: 100% 2/2 [05:05<00:00, 152.67s/it]
+2025-12-06 03:05:30,431 [inflora.py] => Task 3, Epoch 2/2 => Loss 1.719, Train_accy 40.10
+Threshold:  1.025
+
+
+Task 4, Epoch 1/2 => Loss 1.983, Train_accy 31.40:  50% 1/2 [02:32<02:32, 152.11s/it]
+Task 4, Epoch 2/2 => Loss 1.637, Train_accy 43.60: 100% 2/2 [05:05<00:00, 152.65s/it]
+2025-12-06 03:15:20,559 [inflora.py] => Task 4, Epoch 2/2 => Loss 1.637, Train_accy 43.60
+Threshold:  1.05
+
+Task 5, Epoch 1/2 => Loss 1.861, Train_accy 33.76:  50% 1/2 [02:32<02:32, 152.94s/it]
+Task 5, Epoch 2/2 => Loss 1.563, Train_accy 43.42: 100% 2/2 [05:06<00:00, 153.16s/it]
+2025-12-06 03:25:31,111 [inflora.py] => Task 5, Epoch 2/2 => Loss 1.563, Train_accy 43.42
+
+Task 6, Epoch 1/2 => Loss 1.831, Train_accy 35.66:  50% 1/2 [02:33<02:33
+Task 6, Epoch 2/2 => Loss 1.562, Train_accy 44.20: 100% 2/2 [05:06<00:00, 153.16s/it]
+2025-12-06 03:35:57,081 [inflora.py] => Task 6, Epoch 2/2 => Loss 1.562, Train_accy 44.20
+
+
+Task 0, Epoch 1/2 => Loss 0.447, Train_accy 86.24:  50% 1/2 [02:19<02:19, 139.20s/it]
+Task 0, Epoch 2/2 => Loss 0.189, Train_accy 93.94: 100% 2/2 [04:38<00:00, 139.20s/it]
+2025-12-11 08:29:27,548 [inflora.py] => Task 0, Epoch 2/2 => Loss 0.189, Train_accy 93.94
+
+
+Task 0, Epoch 1/2 => Loss 0.442, Train_accy 86.06:  50% 1/2 [02:19<02:19, 139.41s/it]
+Task 0, Epoch 2/2 => Loss 0.184, Train_accy 94.18: 100% 2/2 [04:38<00:00, 139.28s/it]
+2025-12-11 09:00:00,690 [inflora.py] => Task 0, Epoch 2/2 => Loss 0.184, Train_accy 94.18
+Task 1, Epoch 1/2 => Loss 0.516, Train_accy 83.66:  50% 1/2 [02:19<02:19, 139.17s/it]
+Task 1, Epoch 2/2 => Loss 0.233, Train_accy 92.36: 100% 2/2 [04:38<00:00, 139.17s/it]
+2025-12-11 09:08:24,951 [inflora.py] => Task 1, Epoch 2/2 => Loss 0.233, Train_accy 92.36
+
+Task 2, Epoch 1/2 => Loss 2.017, Train_accy 29.60:  50% 1/2
+
+14:43-16:09-16:17
+Task 0, Epoch 1/2 => Loss 0.591, Train_accy 82.30:  50% 1/2 [02:23<02:23, 143.42s/it]
+Task 0, Epoch 2/2 => Loss 0.238, Train_accy 92.02: 100% 2/2 [04:46<00:00, 143.37s/it]
+2025-12-14 06:46:56,639 [inflora.py] => Task 0, Epoch 2/2 => Loss 0.238, Train_accy 92.02
+Task 1, Epoch 1/2 => Loss 0.662, Train_accy 79.20:  50% 1/2
+Task 1, Epoch 2/2 => Loss 0.273, Train_accy 91.10: 100% 2/2 [04:45<00:00, 142.87s/it]
+2025-12-14 06:55:31,853 [inflora.py] => Task 1, Epoch 2/2 => Loss 0.273, Train_accy 91.10
+Task 2, Epoch 1/2 => Loss 0.547, Train_accy 83.58:  50% 1/2 [02:23<02:23, 143.66s/it]
+Task 2, Epoch 2/2 => Loss 0.251, Train_accy 91.72: 100% 2/2 [04:46<00:00, 143.49s/it]
+2025-12-14 07:04:21,160 [inflora.py] => Task 2, Epoch 2/2 => Loss 0.251, Train_accy 91.72
+Task 3, Epoch 1/2 => Loss 0.530, Train_accy 84.42:  50% 1/2 [02:23<02:23, 143.94s/it]
+Task 3, Epoch 2/2 => Loss 0.241, Train_accy 92.48
+2025-12-14 07:13:27,276 [inflora.py] => Task 3, Epoch 2/2 => Loss 0.241, Train_accy 92.48
+Task 4, Epoch 1/2 => Loss 0.560, Train_accy 82.70:  50% 1/2 [02:23<02:23, 144.00s/it]
+Task 4, Epoch 2/2 => Loss 0.257, Train_accy 91.54: 100% 2/2 [04:47<00:00, 143.67s/it]
+2025-12-14 07:22:49,891 [inflora.py] => Task 4, Epoch 2/2 => Loss 0.257, Train_accy 91.54
+Task 5, Epoch 1/2 => Loss 0.492, Train_accy 84.00:  50% 1/2 [02:23<02:23, 143.70s/it]
+Task 5, Epoch 2/2 => Loss 0.266, Train_accy 91.04: 100% 2/2 [04:47<00:00, 143.67s/it]
+2025-12-14 07:32:23,333 [inflora.py] => Task 5, Epoch 2/2 => Loss 0.266, Train_accy 91.04
+Task 6, Epoch 1/2 => Loss 0.581, Train_accy 81.04:  50% 1/2
+Task 6, Epoch 2/2 => Loss 0.288, Train_accy 90.18: 100% 2/2 [04:47<00:00, 143.95s/it]
+2025-12-14 07:42:07,046 [inflora.py] => Task 6, Epoch 2/2 => Loss 0.288, Train_accy 90.18
+Task 7, Epoch 1/2 => Loss 0.474, Train_accy 85.32:  50% 1/2 [02:23<02:23, 144.00s/it]
+Task 7, Epoch 2/2 => Loss 0.252, Train_accy 92.12: 100% 2/2 [04:48<00:00, 144.37s/it]
+2025-12-14 07:52:07,345 [inflora.py] => Task 7, Epoch 2/2 => Loss 0.252, Train_accy 92.12
+Task 8, Epoch 1/2 => Loss 0.479, Train_accy 84.60:  50% 1/2 [02:23<02:23, 143.98s/it]
+Task 8, Epoch 2/2 => Loss 0.222, Train_accy 92.58: 100% 2/2 [04:48<00:00, 144.05s/it]
+2025-12-14 08:02:21,313 [inflora.py] => Task 8, Epoch 2/2 => Loss 0.222, Train_accy 92.58
+Task 9, Epoch 1/2 => Loss 0.392, Train_accy 88.14:  50% 1/2 [02:24<02:24, 144.46s/it]
+Task 9, Epoch 2/2 => Loss 0.186, Train_accy 94.34: 100% 2/2 [04:48<00:00, 144.31s/it]
+2025-12-14 08:12:49,349 [inflora.py] => Task 9, Epoch 2/2 => Loss 0.186, Train_accy 94.34
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
