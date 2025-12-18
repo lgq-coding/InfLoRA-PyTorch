@@ -5,19 +5,18 @@
 同时，也感谢《人工智能实践课》带给我的与众不同的体验，感谢在学习与复现过程中各位老师和同学的无私帮助！
 以下是仓库中的文件结构及作用
 ```
+# 以下包含的文件主要是仓库中和复现相关的重要文件
 project/
-├── model/
-│ ├── components/ # 组件目录
-│ ├── utils/ # 工具函数
-│ └── index.js # 入口文件
-├── methods/
-│ ├── components/ # 组件目录
-│ ├── utils/ # 工具函数
-│ └── index.js # 入口文件
-├── 随记.txt
-├── cifar100_inflora.log
+├── configs/
+│ ├── cifar100_inflora.json # 20 epochs 版本
+│ └── cifar100_inflora_debug.json # 2 epochs 版本
+├── models/ # 具体的模型
+├── methods/ # 相关的方法目录，包含 InfLoRA 的实现
+├── utills/ # 相关的工具文件
+├── 随记.txt # 这是本人在复现过程中的随手记录，包含若干的错误log
+├── cifar100_inflora.log # 这是保留的效果最佳的log文件
 ├── README.md
-└── requirements.txt
+└── requirements.txt # 这是需要的一些包
 ```
 ## 2、论文介绍
 ### 2.1 简要概括
