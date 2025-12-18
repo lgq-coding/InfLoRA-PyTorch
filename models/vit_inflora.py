@@ -24,7 +24,8 @@ import torch.nn.functional as F
 import torch.utils.checkpoint
 
 from timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD, IMAGENET_INCEPTION_MEAN, IMAGENET_INCEPTION_STD
-from timm.models.helpers import build_model_with_cfg, resolve_pretrained_cfg, named_apply, adapt_input_conv, checkpoint_seq
+from timm.models.helpers import build_model_with_cfg, resolve_pretrained_cfg, named_apply, adapt_input_conv, \
+    checkpoint_seq
 from timm.models.layers import PatchEmbed, Mlp, DropPath, trunc_normal_, lecun_normal_
 from timm.models.registry import register_model
 
@@ -84,7 +85,7 @@ default_cfgs = {
             'B_8-i21k-300ep-lr_0.001-aug_medium1-wd_0.1-do_0.0-sd_0.0--imagenet2012-steps_20k-lr_0.01-res_224.npz'),
     'vit_large_patch32_224': _cfg(
         url='',  # no official model weights for this combo, only for in21k
-        ),
+    ),
     'vit_large_patch32_384': _cfg(
         url='https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-vitjx/jx_vit_large_p32_384-9b920ba8.pth',
         input_size=(3, 384, 384), crop_pct=1.0),
@@ -153,7 +154,6 @@ default_cfgs = {
         url='https://dl.fbaipublicfiles.com/dino/dino_vitbase8_pretrain/dino_vitbase8_pretrain.pth',
         mean=IMAGENET_DEFAULT_MEAN, std=IMAGENET_DEFAULT_STD, num_classes=0),
 
-
     # ViT ImageNet-21K-P pretraining by MILL
     'vit_base_patch16_224_miil_in21k': _cfg(
         url='https://miil-public-eu.oss-eu-central-1.aliyuncs.com/model-zoo/ImageNet_21K_P/models/timm/vit_base_patch16_224_in21k_miil.pth',
@@ -194,9 +194,9 @@ class Attention_LoRA(nn.Module):
         self.lora_B_v = nn.ModuleList([nn.Linear(r, dim, bias=False) for _ in range(n_tasks)])
         self.rank = r
 
-        self.matrix = torch.zeros(dim ,dim)
+        self.matrix = torch.zeros(dim, dim)
         self.n_matrix = 0
-        self.cur_matrix = torch.zeros(dim ,dim)
+        self.cur_matrix = torch.zeros(dim, dim)
         self.n_cur_matrix = 0
 
     def init_param(self):
@@ -219,42 +219,102 @@ class Attention_LoRA(nn.Module):
 
     def save_attn_gradients(self, attn_gradients):
         self.attn_gradients = attn_gradients
-        
+
     def get_attn_gradients(self):
         return self.attn_gradients
-    
+
     def save_attention_map(self, attention_map):
         self.attention_map = attention_map
-        
+
     def get_attention_map(self):
         return self.attention_map
-    
-    def forward(self, x, task, register_hook=False, get_feat=False,get_cur_feat=False):
+
+    def forward(self, x, task, register_hook=False, get_feat=False, get_cur_feat=False):
         if get_feat:
-            self.matrix = (self.matrix*self.n_matrix + torch.bmm(x.detach().permute(0, 2, 1), x.detach()).sum(dim=0).cpu())/(self.n_matrix + x.shape[0]*x.shape[1])
-            self.n_matrix += x.shape[0]*x.shape[1]
+            self.matrix = (self.matrix * self.n_matrix + torch.bmm(x.detach().permute(0, 2, 1), x.detach()).sum(
+                dim=0).cpu()) / (self.n_matrix + x.shape[0] * x.shape[1])
+            self.n_matrix += x.shape[0] * x.shape[1]
         if get_cur_feat:
-            self.cur_matrix = (self.cur_matrix*self.n_cur_matrix + torch.bmm(x.detach().permute(0, 2, 1), x.detach()).sum(dim=0).cpu())/(self.n_cur_matrix + x.shape[0]*x.shape[1])
-            self.n_cur_matrix += x.shape[0]*x.shape[1]
+            self.cur_matrix = (self.cur_matrix * self.n_cur_matrix + torch.bmm(x.detach().permute(0, 2, 1),
+                                                                               x.detach()).sum(dim=0).cpu()) / (
+                                      self.n_cur_matrix + x.shape[0] * x.shape[1])
+            self.n_cur_matrix += x.shape[0] * x.shape[1]
 
         B, N, C = x.shape
         qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, C // self.num_heads).permute(2, 0, 3, 1, 4)
-        q, k, v = qkv[0], qkv[1], qkv[2]   # make torchscript happy (cannot use tensor as tuple)
+        q, k, v = qkv[0], qkv[1], qkv[2]  # make torchscript happy (cannot use tensor as tuple)
 
-        # insert lora
+        # insert lora (robust / safe)
         if task > -0.5:
-            weight_k = torch.stack([torch.mm(self.lora_B_k[t].weight, self.lora_A_k[t].weight) for t in range(task+1)], dim=0).sum(dim=0)
-            weight_v = torch.stack([torch.mm(self.lora_B_v[t].weight, self.lora_A_v[t].weight) for t in range(task+1)], dim=0).sum(dim=0)
+            # collect only existing LoRA modules up to task
+            mats_k = []
+            mats_v = []
+            # number of available lora modules (modulelist length) -- defensive check
+            num_lora_k = len(self.lora_B_k) if hasattr(self, 'lora_B_k') else 0
+            num_lora_v = len(self.lora_B_v) if hasattr(self, 'lora_B_v') else 0
+            max_idx = min(task + 1, num_lora_k, num_lora_v)
+
+            if max_idx < (task + 1):
+                # debug info to help locate missing initialization
+                # you can remove/quiet this print later
+                print(
+                    f"DEBUG: requested task {task} but available LoRA modules: k={num_lora_k}, v={num_lora_v}. Using max_idx={max_idx}")
+
+            for t in range(max_idx):
+                # defensive attribute checks
+                if hasattr(self.lora_B_k[t], 'weight') and hasattr(self.lora_A_k[t], 'weight'):
+                    mats_k.append(torch.mm(self.lora_B_k[t].weight, self.lora_A_k[t].weight))
+                else:
+                    print(f"DEBUG: skipping malformed LoRA k module at index {t}")
+                if hasattr(self.lora_B_v[t], 'weight') and hasattr(self.lora_A_v[t], 'weight'):
+                    mats_v.append(torch.mm(self.lora_B_v[t].weight, self.lora_A_v[t].weight))
+                else:
+                    print(f"DEBUG: skipping malformed LoRA v module at index {t}")
+
+            # Aggregate safely (fallback to zero-like if nothing)
+            if len(mats_k) > 0:
+                weight_k = torch.stack(mats_k, dim=0).sum(dim=0)
+            else:
+                # fallback: build a zero tensor matched to a sensible reference if possible
+                if hasattr(self, 'qkv') and hasattr(self.qkv, 'weight'):
+                    weight_k = torch.zeros_like(self.qkv.weight, device=self.qkv.weight.device)
+                elif hasattr(self, 'proj') and hasattr(self.proj, 'weight'):
+                    weight_k = torch.zeros_like(self.proj.weight, device=self.proj.weight.device)
+                else:
+                    device = next(self.parameters()).device if len(list(self.parameters())) > 0 else torch.device('cpu')
+                    embed_dim = getattr(self, 'embed_dim', None)
+                    if isinstance(embed_dim, int):
+                        weight_k = torch.zeros((embed_dim, embed_dim), device=device)
+                    else:
+                        weight_k = torch.zeros(1, device=device)
+
+            if len(mats_v) > 0:
+                weight_v = torch.stack(mats_v, dim=0).sum(dim=0)
+            else:
+                if hasattr(self, 'qkv') and hasattr(self.qkv, 'weight'):
+                    weight_v = torch.zeros_like(self.qkv.weight, device=self.qkv.weight.device)
+                elif hasattr(self, 'proj') and hasattr(self.proj, 'weight'):
+                    weight_v = torch.zeros_like(self.proj.weight, device=self.proj.weight.device)
+                else:
+                    device = next(self.parameters()).device if len(list(self.parameters())) > 0 else torch.device('cpu')
+                    embed_dim = getattr(self, 'embed_dim', None)
+                    if isinstance(embed_dim, int):
+                        weight_v = torch.zeros((embed_dim, embed_dim), device=device)
+                    else:
+                        weight_v = torch.zeros(1, device=device)
+
+            # apply LoRA linear adjustments: ensure shapes match F.linear expects (out_features x in_features)
+            # F.linear(x, weight) treats weight as (out_features, in_features)
             k = k + F.linear(x, weight_k).reshape(B, N, self.num_heads, C // self.num_heads).permute(0, 2, 1, 3)
             v = v + F.linear(x, weight_v).reshape(B, N, self.num_heads, C // self.num_heads).permute(0, 2, 1, 3)
 
         attn = (q @ k.transpose(-2, -1)) * self.scale
         attn = attn.softmax(dim=-1)
         attn = self.attn_drop(attn)
-                
+
         if register_hook:
             self.save_attention_map(attn)
-            attn.register_hook(self.save_attn_gradients)        
+            attn.register_hook(self.save_attn_gradients)
 
         x = (attn @ v).transpose(1, 2).reshape(B, N, C)
         x = self.proj(x)
@@ -265,12 +325,143 @@ class Attention_LoRA(nn.Module):
         matrix_k = torch.mm(self.lora_B_k[task].weight, self.lora_A_k[task].weight)
         matrix_v = torch.mm(self.lora_B_v[task].weight, self.lora_A_v[task].weight)
         return matrix_k, matrix_v
-    
+
     def get_pre_matrix(self, task):
         with torch.no_grad():
-            weight_k = torch.stack([torch.mm(self.lora_B_k[t].weight, self.lora_A_k[t].weight) for t in range(task)], dim=0).sum(dim=0)
-            weight_v = torch.stack([torch.mm(self.lora_B_v[t].weight, self.lora_A_v[t].weight) for t in range(task)], dim=0).sum(dim=0)
+            weight_k = torch.stack([torch.mm(self.lora_B_k[t].weight, self.lora_A_k[t].weight) for t in range(task)],
+                                   dim=0).sum(dim=0)
+            weight_v = torch.stack([torch.mm(self.lora_B_v[t].weight, self.lora_A_v[t].weight) for t in range(task)],
+                                   dim=0).sum(dim=0)
         return weight_k, weight_v
+
+    def ensure_lora_slots(self, n_tasks, rank=None, device=None):
+        """
+        Pre-create ModuleList slots for lora_A_k/lora_B_k and lora_A_v/lora_B_v up to n_tasks.
+        Safe to call multiple times.
+        """
+        if rank is None:
+            rank = getattr(self, 'rank', 4)
+        # ensure ModuleLists exist
+        if not hasattr(self, 'lora_A_k') or self.lora_A_k is None:
+            self.lora_A_k = nn.ModuleList()
+        if not hasattr(self, 'lora_B_k') or self.lora_B_k is None:
+            self.lora_B_k = nn.ModuleList()
+        if not hasattr(self, 'lora_A_v') or self.lora_A_v is None:
+            self.lora_A_v = nn.ModuleList()
+        if not hasattr(self, 'lora_B_v') or self.lora_B_v is None:
+            self.lora_B_v = nn.ModuleList()
+
+        # helper to create correct-shaped pair (B, A)
+        def _create_pair(rank_local, device_local):
+            # infer embed_dim
+            embed_dim = getattr(self, 'embed_dim', None)
+            if embed_dim is None:
+                try:
+                    if hasattr(self, 'qkv') and hasattr(self.qkv, 'weight'):
+                        embed_dim = self.qkv.weight.shape[1]
+                    else:
+                        embed_dim = getattr(self, 'embed_dim', 768)
+                except Exception:
+                    embed_dim = 768
+            # A: (r x embed_dim) -> nn.Linear(in=embed_dim, out=r)
+            A = nn.Linear(embed_dim, rank_local, bias=False)
+            # B: (embed_dim x r) -> nn.Linear(in=r, out=embed_dim)
+            B = nn.Linear(rank_local, embed_dim, bias=False)
+            try:
+                nn.init.kaiming_uniform_(B.weight, a=math.sqrt(5))
+            except Exception:
+                try:
+                    nn.init.normal_(B.weight, std=0.02)
+                except Exception:
+                    pass
+            try:
+                nn.init.zeros_(A.weight)
+            except Exception:
+                pass
+            if device_local is not None:
+                A.to(device_local);
+                B.to(device_local)
+            return B, A
+
+        # create missing slots
+        device_local = device or (
+            next(self.parameters()).device if len(list(self.parameters())) > 0 else torch.device('cpu'))
+        needed = n_tasks
+        while len(self.lora_A_k) < needed:
+            Bk, Ak = _create_pair(rank, device_local)
+            self.lora_B_k.append(Bk)
+            self.lora_A_k.append(Ak)
+        while len(self.lora_A_v) < needed:
+            Bv, Av = _create_pair(rank, device_local)
+            self.lora_B_v.append(Bv)
+            self.lora_A_v.append(Av)
+
+    def ensure_lora_for_task(self, task_idx, rank=None, device=None):
+        """
+        Ensure there exist LoRA modules for task index `task_idx` (0-based).
+        Creates new pairs if necessary and returns True if new entries were created.
+        """
+        if rank is None:
+            rank = getattr(self, 'rank', 4)
+        # ensure ModuleLists exist
+        if not hasattr(self, 'lora_A_k') or self.lora_A_k is None:
+            self.lora_A_k = nn.ModuleList()
+        if not hasattr(self, 'lora_B_k') or self.lora_B_k is None:
+            self.lora_B_k = nn.ModuleList()
+        if not hasattr(self, 'lora_A_v') or self.lora_A_v is None:
+            self.lora_A_v = nn.ModuleList()
+        if not hasattr(self, 'lora_B_v') or self.lora_B_v is None:
+            self.lora_B_v = nn.ModuleList()
+
+        # desired length
+        needed = task_idx + 1
+        created = False
+        device_local = device or (
+            next(self.parameters()).device if len(list(self.parameters())) > 0 else torch.device('cpu'))
+
+        # helper to create one pair
+        def _create_one_pair():
+            # infer embed_dim same as above
+            embed_dim = getattr(self, 'embed_dim', None)
+            if embed_dim is None:
+                try:
+                    if hasattr(self, 'qkv') and hasattr(self.qkv, 'weight'):
+                        embed_dim = self.qkv.weight.shape[1]
+                    else:
+                        embed_dim = getattr(self, 'embed_dim', 768)
+                except Exception:
+                    embed_dim = 768
+            A = nn.Linear(embed_dim, rank, bias=False)  # (r, embed_dim)
+            B = nn.Linear(rank, embed_dim, bias=False)  # (embed_dim, r)
+            try:
+                nn.init.kaiming_uniform_(B.weight, a=math.sqrt(5))
+            except Exception:
+                try:
+                    nn.init.normal_(B.weight, std=0.02)
+                except Exception:
+                    pass
+            try:
+                nn.init.zeros_(A.weight)
+            except Exception:
+                pass
+            A.to(device_local);
+            B.to(device_local)
+            return B, A
+
+        # append until we have enough
+        while len(self.lora_A_k) < needed:
+            Bk, Ak = _create_one_pair()
+            self.lora_B_k.append(Bk);
+            self.lora_A_k.append(Ak);
+            created = True
+        while len(self.lora_A_v) < needed:
+            Bv, Av = _create_one_pair()
+            self.lora_B_v.append(Bv);
+            self.lora_A_v.append(Av);
+            created = True
+
+        return created
+
 
 class LayerScale(nn.Module):
     def __init__(self, dim, init_values=1e-5, inplace=False):
@@ -289,7 +480,8 @@ class Block(nn.Module):
             drop_path=0., act_layer=nn.GELU, norm_layer=nn.LayerNorm, n_tasks=10, r=64):
         super().__init__()
         self.norm1 = norm_layer(dim)
-        self.attn = Attention_LoRA(dim, num_heads=num_heads, qkv_bias=qkv_bias, attn_drop=attn_drop, proj_drop=drop, n_tasks=n_tasks, r=r)
+        self.attn = Attention_LoRA(dim, num_heads=num_heads, qkv_bias=qkv_bias, attn_drop=attn_drop, proj_drop=drop,
+                                   n_tasks=n_tasks, r=r)
         self.ls1 = LayerScale(dim, init_values=init_values) if init_values else nn.Identity()
         # NOTE: drop path for stochastic depth, we shall see if this is better than dropout here
         self.drop_path1 = DropPath(drop_path) if drop_path > 0. else nn.Identity()
@@ -301,7 +493,8 @@ class Block(nn.Module):
         self.drop_path2 = DropPath(drop_path) if drop_path > 0. else nn.Identity()
 
     def forward(self, x, task, register_hook=False, get_feat=False, get_cur_feat=False):
-        x = x + self.drop_path1(self.ls1(self.attn(self.norm1(x), task, register_hook=register_hook, get_feat=get_feat, get_cur_feat=get_cur_feat)))
+        x = x + self.drop_path1(self.ls1(
+            self.attn(self.norm1(x), task, register_hook=register_hook, get_feat=get_feat, get_cur_feat=get_cur_feat)))
         x = x + self.drop_path2(self.ls2(self.mlp(self.norm2(x))))
         return x
 
@@ -318,7 +511,8 @@ class ParallelBlock(nn.Module):
         for _ in range(num_parallel):
             self.attns.append(nn.Sequential(OrderedDict([
                 ('norm', norm_layer(dim)),
-                ('attn', Attention_LoRA(dim, num_heads=num_heads, qkv_bias=qkv_bias, attn_drop=attn_drop, proj_drop=drop)),
+                ('attn',
+                 Attention_LoRA(dim, num_heads=num_heads, qkv_bias=qkv_bias, attn_drop=attn_drop, proj_drop=drop)),
                 ('ls', LayerScale(dim, init_values=init_values) if init_values else nn.Identity()),
                 ('drop_path', DropPath(drop_path) if drop_path > 0. else nn.Identity())
             ])))
@@ -405,7 +599,8 @@ class VisionTransformer(nn.Module):
         self.blocks = nn.Sequential(*[
             block_fn(
                 dim=embed_dim, num_heads=num_heads, mlp_ratio=mlp_ratio, qkv_bias=qkv_bias, init_values=init_values,
-                drop=drop_rate, attn_drop=attn_drop_rate, drop_path=dpr[i], norm_layer=norm_layer, act_layer=act_layer,n_tasks=n_tasks,r=rank)
+                drop=drop_rate, attn_drop=attn_drop_rate, drop_path=dpr[i], norm_layer=norm_layer, act_layer=act_layer,
+                n_tasks=n_tasks, r=rank)
             for i in range(depth)])
         use_fc_norm = self.global_pool == 'avg'
         self.norm = norm_layer(embed_dim) if not use_fc_norm else nn.Identity()
@@ -499,7 +694,7 @@ class VisionTransformer(nn.Module):
         # x = self.pos_drop(x + self.pos_embed_grow[:, :self.patch_embed.num_patches+class_num, :])
         x = torch.cat((self.cls_token.expand(x.shape[0], -1, -1), x), dim=1)
         x = self.pos_drop(x + self.pos_embed)
-        x = torch.cat((self.cls_token_grow[:, :class_num*2, :].expand(x.shape[0], -1, -1), x), dim=1)
+        x = torch.cat((self.cls_token_grow[:, :class_num * 2, :].expand(x.shape[0], -1, -1), x), dim=1)
 
         # import pdb;pdb.set_trace()
         if self.grad_checkpointing and not torch.jit.is_scripting():
@@ -904,7 +1099,7 @@ def vit_huge_patch14_224(pretrained=False, **kwargs):
 def vit_giant_patch14_224(pretrained=False, **kwargs):
     """ ViT-Giant model (ViT-g/14) from `Scaling Vision Transformers` - https://arxiv.org/abs/2106.04560
     """
-    model_kwargs = dict(patch_size=14, embed_dim=1408, mlp_ratio=48/11, depth=40, num_heads=16, **kwargs)
+    model_kwargs = dict(patch_size=14, embed_dim=1408, mlp_ratio=48 / 11, depth=40, num_heads=16, **kwargs)
     model = _create_vision_transformer('vit_giant_patch14_224', pretrained=pretrained, **model_kwargs)
     return model
 
@@ -913,7 +1108,7 @@ def vit_giant_patch14_224(pretrained=False, **kwargs):
 def vit_gigantic_patch14_224(pretrained=False, **kwargs):
     """ ViT-Gigantic model (ViT-G/14) from `Scaling Vision Transformers` - https://arxiv.org/abs/2106.04560
     """
-    model_kwargs = dict(patch_size=14, embed_dim=1664, mlp_ratio=64/13, depth=48, num_heads=16, **kwargs)
+    model_kwargs = dict(patch_size=14, embed_dim=1664, mlp_ratio=64 / 13, depth=48, num_heads=16, **kwargs)
     model = _create_vision_transformer('vit_gigantic_patch14_224', pretrained=pretrained, **model_kwargs)
     return model
 
