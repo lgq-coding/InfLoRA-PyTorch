@@ -16,6 +16,8 @@ project/
 ├── 随记.txt # 这是本人在复现过程中的随手记录，包含若干的错误log
 ├── cifar100_inflora.log # 这是保留的效果最佳的log文件
 ├── README.md
+├── main.py
+├── trainer.py
 └── requirements.txt # 这是需要的一些包
 ```
 ## 2、论文介绍
